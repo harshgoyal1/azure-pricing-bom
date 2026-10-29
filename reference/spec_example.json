@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "title": "Example Client - Web platform",
+    "region": "UAE North",
+    "price_date": "2026-10-29",
+    "buffer": 0.15,
+    "local_currency": "AED",
+    "local_rate": 3.6725,
+    "rate_basis": "Fixed peg",
+    "calculator": {"Low": "https://azure.com/e/REPLACE", "High": "https://azure.com/e/REPLACE"}
+  },
+  "assumptions": [
+    ["users", "Monthly active users", 5000, 25000, "users", "Client estimate"]
+  ],
+  "blocks": {
+    "1. Edge, identity & API": "Front Door Premium + WAF, API Management",
+    "2. Application compute": "App Service P1mv3 zone-redundant",
+    "3. Data & storage": "Azure SQL GP, Blob Hot ZRS"
+  },
+  "lines": [
+    {"cat": "1. Edge, identity & API", "item": "Azure Front Door Premium - base fee", "env": "Prod", "region": "Global", "low": 1, "high": 1, "qty_unit": "profile", "price": 330, "price_unit": "per profile / month", "note": "WAF included"},
+    {"cat": "1. Edge, identity & API", "item": "Microsoft Entra External ID - MAU above free 50k", "low": "@users", "high": "@users", "qty_unit": "MAU", "price": 0, "price_unit": "per MAU", "note": "Free under 50,000 MAU"},
+    {"cat": "2. Application compute", "item": "App Service P1mv3 Linux (zone-redundant)", "low": 2, "high": 3, "qty_unit": "instances", "price": 0.1976, "price_unit": "per hour", "mult": "hours"},
+    {"cat": "3. Data & storage", "item": "Azure SQL Database GP 2 vCore zone-redundant", "low": 1, "high": 1, "qty_unit": "DB", "price": 0.6386, "price_unit": "per hour", "mult": "hours"},
+    {"cat": "3. Data & storage", "item": "Blob Storage Hot ZRS", "low": 500, "high": 3000, "qty_unit": "GB", "price": 0.0255, "price_unit": "per GB / month"}
+  ],
+  "licences": [
+    {"item": "Power BI Pro", "low": 10, "high": 20, "price": 14, "per": "user-month", "months": 12}
+  ],
+  "sources": ["Client sizing workshop notes, 2026-10-20"]
+}
